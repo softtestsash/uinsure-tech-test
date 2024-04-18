@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {
+        "target": "ES2022",
+        "types": ["cypress"],
+        "esModuleInterop": true
+    },
+    "include": ["../../node_modules/cypress", "cypress/**/*.ts"]
+}
