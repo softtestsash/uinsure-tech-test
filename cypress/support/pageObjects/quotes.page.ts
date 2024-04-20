@@ -9,12 +9,10 @@ class Quotes {
         return cy.get('[data-testid="policy-postcode"]');
     }
     get search() {
-        return cy.get('[data-testid="filter-button"]').click();
+        return cy.get('[data-testid="filter-button"]');
     }
-
-    get quotesWait() {
-         cy.intercept('POST', '**/api/RetrieveQuotes')
-        return cy.wait('@retrieve-quotes')//eq 200 response
+    get quoteResult() {
+        return cy.get('[data-testid="retrieved-quote"]');
     }
 }
 
