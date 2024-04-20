@@ -9,7 +9,7 @@ let password: string;
 
 const loginDetails = {
     emailAddress: 'john.doe@uinsure.co.uk',
-    password: '',
+    password: Cypress.env('password'),
 };
 
 Given('the user is on the adviser platform login page', () => {
