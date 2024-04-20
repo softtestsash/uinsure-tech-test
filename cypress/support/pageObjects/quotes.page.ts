@@ -14,6 +14,9 @@ class Quotes {
     get quoteResult() {
         return cy.get('[data-testid="retrieved-quote"]');
     }
+    get reset() {
+        return cy.get('[data-testid="reset-filter-button"]');
+    }
 }
 
 export default new Quotes();
