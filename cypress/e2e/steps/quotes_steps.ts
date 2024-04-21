@@ -40,6 +40,17 @@ When('I click Search and wait for the results to load', () => {
 When('I reset the search criteria', () => {
     quotesPage.reset.click()
 });
-Then('I am shown a result with {string}', (expectedValue) => {
-    quotesPage.quoteResult.contains(expectedValue)
+
+Then(/^I am (not )?shown a result with "(.+)"/, (notShown, expectedValue) => {
+    if (notShown) {
+        quotesPage.quoteResult.should('not.contain', expectedValue)
+    } else {
+        quotesPage.quoteResult.contains(expectedValue)
+    }
+
+});
+Then('the search fields are cleared', () => {
+    quotesPage.quoteReference.should('not.contain.text')
+    quotesPage.quoteName.should('not.contain.text')
+    quotesPage.quotePostcode.should('not.contain.text')
 });

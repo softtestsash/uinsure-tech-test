@@ -31,5 +31,10 @@ Feature: Quotes
         Given I am logged in
         And I am on the recent activity page
         When I type "UINH53833618" in to the reference field
+        And I click Search and wait for the results to load
         And I reset the search criteria
-        # Then I am shown the latest activity
+        Then I am not shown a result with "UINH53833618"
+        And the search fields are cleared
+
+    # Scenario: Show validation message when searching for partial postcode
+    
