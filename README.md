@@ -1,7 +1,10 @@
 # UInsure Tech Test
 
 This repo contains the tech test for my application to UInsure
+# Postman
+`api_key` rerquired as an environment variable before being able to run
 
+# Cypress
 ## Installation
 Once you have cloned this repository locally, cd in to the folder and execute the following:
 
