@@ -1,0 +1,112 @@
+{
+	"info": {
+		"_postman_id": "1a8189ea-c734-4086-8334-12e041384c54",
+		"name": "UInsure",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34418628"
+	},
+	"item": [
+		{
+			"name": "get quotes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();\r",
+							"\r",
+							"pm.test('Response code is 200', function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Correct number of results returned\", function () {\r",
+							"    var results = parseInt(pm.collectionVariables.get(\"results\"));\r",
+							"    pm.expect(responseJson.Quotes.length).to.eql(results);\r",
+							"});\r",
+							"\r",
+							"// pm.test(\"Correct number of pages returned\", function () {\r",
+							"//     var pageNo = pm.collectionVariables.get(\"pageNo\");\r",
+							"// });\r",
+							"\r",
+							"responseJson.Quotes.forEach(function (quote, index) {\r",
+							"    pm.test(`Properties and values returned for Quote ${ index + 1 }`, function () {\r",
+							"        pm.expect(quote).to.have.property('QuoteReference').that.is.not.empty;\r",
+							"        pm.expect(quote).to.have.property('QuoteType').that.is.not.empty;\r",
+							"        pm.expect(quote).to.have.property(\"QuoteStatus\").that.is.not.empty;\r",
+							"        pm.expect(quote).to.have.property('ApplicantSummary').that.is.not.empty;\r",
+							"        pm.expect(new Date(quote.QuoteDatetime)).to.be.a('date');\r",
+							"        pm.expect(quote).to.have.property(\"BrokerName\").that.is.not.empty;\r",
+							"        pm.expect(quote).to.have.property('Postcode').that.is.not.empty;\r",
+							"    });\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"APIKey\": {{api_key}},\r\n    \"PageSize\": {{results}},\r\n    \"PageNumber\": {{pageNo}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.test.uinsure.co.uk/quotes",
+					"protocol": "https",
+					"host": [
+						"api",
+						"test",
+						"uinsure",
+						"co",
+						"uk"
+					],
+					"path": [
+						"quotes"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "results",
+			"value": "20",
+			"type": "string"
+		},
+		{
+			"key": "pageNo",
+			"value": "1",
+			"type": "string"
+		}
+	]
+}
